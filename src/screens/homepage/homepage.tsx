@@ -9,6 +9,7 @@ import Filters from "./components/filters/filters";
 import ProductList from "./components/product-list/product-list";
 import Spinner from "@/components/spinner/spinner";
 import { sortProducts } from "./utils/sorting";
+import Head from "next/head";
 
 function Homepage() {
   const { isLoading: areProductsLoading, data: products } = useQuery<Product[]>(
@@ -38,28 +39,25 @@ function Homepage() {
     }
   }, [products, selectedFilters, chosenSort]);
 
-  if (areProductsLoading || areCategoriesLoading) {
-    return (
-      <>
-        <Spinner />
-      </>
-    );
-  }
-
   return (
-    <Layout>
-      {categories && (
-        <Filters
-          filters={categories}
-          setSelectedFilters={setSelectedFilters}
-          setChosenSort={setChosenSort}
-        />
+    <>
+      {areProductsLoading || areCategoriesLoading ? (
+        <Spinner />
+      ) : (
+        <Layout>
+          {categories && (
+            <Filters
+              filters={categories}
+              setSelectedFilters={setSelectedFilters}
+              setChosenSort={setChosenSort}
+            />
+          )}
+          {products && filteredResults && (
+            <ProductList products={filteredResults()} />
+          )}
+        </Layout>
       )}
-      {products && filteredResults && (
-        <ProductList products={filteredResults()} />
-      )}
-    </Layout>
+    </>
   );
 }
-
 export default Homepage;

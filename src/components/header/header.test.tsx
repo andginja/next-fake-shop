@@ -13,7 +13,7 @@ describe("Header", () => {
   test("renders Logo link", () => {
     render(<Header />);
 
-    const logoLink = screen.getByText("Logo");
+    const logoLink = screen.getByText("Next Fake Shop");
     expect(logoLink).toBeInTheDocument();
     expect(logoLink.getAttribute("href")).toBe("/");
   });

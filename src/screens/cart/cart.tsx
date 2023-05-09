@@ -18,6 +18,8 @@ import ShopContext from "@/utils/context/shop-context";
 import Image from "next/image";
 import * as colors from "@/styles/colors.js";
 import Spinner from "@/components/spinner/spinner";
+import Head from "next/head";
+import Breadcrumbs from "@/components/breadcrumbs/breadcrumbs";
 
 function CartScreen() {
   const { cart, removeItem, resetCart, cartSize } = useContext(ShopContext);
@@ -36,42 +38,49 @@ function CartScreen() {
   }
 
   return (
-    <Layout>
-      {cart && cartSize === 0 && <div>No items</div>}
+    <>
+      {isClient ? (
+        <Layout>
+          <Breadcrumbs places={[{ name: `Cart`, url: "/cart" }]} />
+          {cart && cartSize === 0 && <div>No items</div>}
 
-      {cart && cartSize > 0 && (
-        <>
-          <ProductListWrapper>
-            {cart.map((product, index) => {
-              return (
-                <CardWrapper key={`cartItemPages-${index}blabla`}>
-                  <ImageWrapper>
-                    <Image src={product.image} alt={product.title} fill />
-                  </ImageWrapper>
-                  <ContentWrapper>
-                    <StyledTitle>{product.title}</StyledTitle>
-                    <PricingWrapper>
-                      <StyledPricer>{`${product.price} €`}</StyledPricer>
-                    </PricingWrapper>
-                    <StyledRemoveItemIcon
-                      color={colors.brandPrimary}
-                      onClick={() => removeItem(index)}
-                      data-testid={`remove-item-icon`}
-                    />
-                  </ContentWrapper>
-                </CardWrapper>
-              );
-            })}
-          </ProductListWrapper>
-          <ResetCartWrapper>
-            <StyledButton onClick={() => resetCart()}>
-              <StyledResetCart color={colors.brandLight} />
-              Reset Cart
-            </StyledButton>
-          </ResetCartWrapper>
-        </>
+          {cart && cartSize > 0 && (
+            <>
+              <ProductListWrapper>
+                {cart.map((product, index) => {
+                  return (
+                    <CardWrapper key={`cartItemPages-${index}blabla`}>
+                      <ImageWrapper>
+                        <Image src={product.image} alt={product.title} fill />
+                      </ImageWrapper>
+                      <ContentWrapper>
+                        <StyledTitle>{product.title}</StyledTitle>
+                        <PricingWrapper>
+                          <StyledPricer>{`${product.price} €`}</StyledPricer>
+                        </PricingWrapper>
+                        <StyledRemoveItemIcon
+                          color={colors.brandPrimary}
+                          onClick={() => removeItem(index)}
+                          data-testid={`remove-item-icon`}
+                        />
+                      </ContentWrapper>
+                    </CardWrapper>
+                  );
+                })}
+              </ProductListWrapper>
+              <ResetCartWrapper>
+                <StyledButton onClick={() => resetCart()}>
+                  <StyledResetCart color={colors.brandLight} />
+                  Reset Cart
+                </StyledButton>
+              </ResetCartWrapper>
+            </>
+          )}
+        </Layout>
+      ) : (
+        <Spinner />
       )}
-    </Layout>
+    </>
   );
 }
 

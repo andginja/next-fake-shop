@@ -51,7 +51,7 @@ describe("ProductScreen", () => {
   test("renders product details", async () => {
     renderProductScreen();
 
-    expect(await screen.findByText(mockProduct.title)).toBeInTheDocument();
+    expect(await screen.findByTestId(`product-title`)).toBeInTheDocument();
     expect(screen.getByText(`${mockProduct.price} €`)).toBeInTheDocument();
     expect(screen.getByText(mockProduct.description)).toBeInTheDocument();
     expect(

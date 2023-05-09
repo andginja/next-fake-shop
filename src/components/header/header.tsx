@@ -7,7 +7,7 @@ function Header() {
   return (
     <HeaderWrapper data-testid={`header`}>
       <StyledAnchor href={`/`} rel="noopener noreferrer">
-        Logo
+        Next Fake Shop
       </StyledAnchor>
       <StyledAnchor href={`/cart`} rel="noopener noreferrer">
         <Cart />

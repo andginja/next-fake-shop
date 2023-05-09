@@ -17,6 +17,9 @@ const queryClient = new QueryClient({
 });
 const inter = Inter({ subsets: ["latin"] });
 
+export const metadata = {
+  title: "Home",
+};
 export default function RootLayout({
   children,
 }: {
@@ -25,16 +28,16 @@ export default function RootLayout({
   return (
     <QueryClientProvider client={queryClient}>
       <ShopProvider>
-        <html lang="en">
-          <body className={inter.className}>
-            <StyledComponentsRegistry>
+        <StyledComponentsRegistry>
+          <html lang="en">
+            <body className={inter.className}>
               <Layout>
                 <Header />
                 {children}
               </Layout>
-            </StyledComponentsRegistry>
-          </body>
-        </html>
+            </body>
+          </html>
+        </StyledComponentsRegistry>
       </ShopProvider>
     </QueryClientProvider>
   );

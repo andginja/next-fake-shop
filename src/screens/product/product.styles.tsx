@@ -6,13 +6,13 @@ import * as colors from "@/styles/colors.js";
 export const Layout = styled("div")`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  padding: 2rem 24rem;
+  gap: 1rem;
+  padding: 0rem 24rem;
   ${mq.desktop} {
     padding: 2rem 8rem;
   }
   ${mq.tabletPortrait} {
-    padding: 2rem 4rem;
+    padding: 2rem 2rem;
   }
 `;
 
