@@ -17,9 +17,6 @@ const queryClient = new QueryClient({
 });
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "Home",
-};
 export default function RootLayout({
   children,
 }: {

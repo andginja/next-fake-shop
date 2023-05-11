@@ -36,9 +36,13 @@ For this reason, using the React Query library was a no-brainer, since it is abl
 
 Instead of using the provided API mocks for the cart, I decided to implement a custom hook that worked in coordination with the Shop Context API in order to persist cart data. This custom hook is able to retrieve and add data to the LocalStorage, through the methods in the Context API call.
 
+### Optimized Performance (useCallback)
+
+In order to prevent unnecessary function calls on component re-rendering, I decided to wrap some functions under the useCallback hook, since we are then able to only run those functions if they dependency values change.
+
 ### Styling (Styled-components)
 
-The styling technique chosen for this project was the Styled Components library, since it allows for component reutilization and it is a quite efficient styling solution. One of the advantages of this approach is to use props in the styling, which was used during this project.
+The styling technique chosen for this project was the Styled Components library, since it allows for component reutilization and it is a quite efficient styling solution. One of the advantages of this approach is to use props in the styling.
 
 ### Testing (Jest)
 
